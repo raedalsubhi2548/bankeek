@@ -1,265 +1,377 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lammah bite | عربة بانكيك وضيافة مناسبات في المدينة المنورة</title>
-<meta name="description" content="Lammah bite — عربة بانكيك وضيافة مناسبات فاخرة في المدينة المنورة، للأعراس والشبكات والجمعات ومناسبات الأطفال والمدارس.">
-<link rel="icon" type="image/png" href="https://e.top4top.io/p_388642lk91.png">
-<meta property="og:title" content="Lammah bite">
-<meta property="og:description" content="مذاق لذيذ يخلي يومهم أجمل! عربة بانكيك وضيافة مناسبات في المدينة المنورة.">
-<meta property="og:image" content="https://e.top4top.io/p_388642lk91.png">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لمّة بايت — بانكيك فاخر في المدينة المنورة</title>
+  <meta name="description" content="لمّة بايت — عربة بانكيك فاخرة للأعراس والتجمعات وحفلات الأطفال في المدينة المنورة. احجز الآن!" />
+  <link rel="icon" href="https://e.top4top.io/p_388642lk91.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-<!-- ═══ HEADER ═══════════════════════════════════════════ -->
-<header class="site-header" id="site-header">
+<!-- Scroll progress -->
+<div id="scroll-progress" role="progressbar" aria-hidden="true"></div>
+
+<!-- ─── HEADER ─────────────────────────────────────────── -->
+<header class="site-header">
   <div class="container header-inner">
-    <a href="index.html" class="brand">
-      <img src="https://e.top4top.io/p_388642lk91.png" alt="شعار Lammah bite" class="brand-logo" width="48" height="48">
-      <span class="brand-name">Lammah bite</span>
+    <!-- Logo ONLY — no brand name text -->
+    <a href="index.html" class="brand" aria-label="لمّة بايت — الرئيسية">
+      <img src="https://e.top4top.io/p_388642lk91.png"
+           alt="شعار لمّة بايت"
+           class="brand-logo"
+           width="66" height="66" />
     </a>
-    <button class="hamburger" id="hamburger" aria-label="فتح القائمة" aria-expanded="false">
+    <button class="hamburger" aria-label="فتح القائمة" aria-expanded="false" aria-controls="nav-overlay">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
-<!-- ═══ NAV OVERLAY ══════════════════════════════════════ -->
-<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
-  <div class="nav-backdrop" id="nav-backdrop"></div>
-  <nav class="nav-panel" aria-label="القائمة الرئيسية">
-    <button class="nav-close" id="nav-close" aria-label="إغلاق القائمة">&times;</button>
+<!-- ─── NAV OVERLAY ────────────────────────────────────── -->
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="القائمة الرئيسية">
+  <div class="nav-backdrop"></div>
+  <nav class="nav-panel">
+    <button class="nav-close" aria-label="إغلاق">✕</button>
     <ul class="nav-links">
-      <li><a href="index.html" class="active">الرئيسية</a></li>
-      <li><a href="offers.html">العروض</a></li>
-      <li><a href="gallery.html">معرض الصور</a></li>
-      <li><a href="about.html">من نحن</a></li>
-      <li><a href="booking.html">الحجز</a></li>
-      <li><a href="faq.html">الأسئلة الشائعة</a></li>
+      <li><a href="index.html">🏠 الرئيسية</a></li>
+      <li><a href="offers.html">🎁 الباقات</a></li>
+      <li><a href="gallery.html">📸 المعرض</a></li>
+      <li><a href="about.html">✨ من نحن</a></li>
+      <li><a href="booking.html">📅 احجز الآن</a></li>
+      <li><a href="faq.html">❓ الأسئلة الشائعة</a></li>
     </ul>
     <div class="nav-footer-cta">
-      <a href="#" class="btn btn-primary" data-whatsapp data-whatsapp-msg="مرحباً، أرغب بالاستفسار عن خدمات Lammah bite">
-        احجز عبر الواتساب
-      </a>
-      <div class="social-pair">
-        <a href="https://www.tiktok.com/@lammah.bite" target="_blank" rel="noopener" class="social-btn" aria-label="تيك توك">
-          <svg viewBox="0 0 24 24" fill="var(--brown-dark)"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5 2.592 2.592 0 0 1-2.59-2.5 2.592 2.592 0 0 1 2.59-2.5c.24 0 .47.04.69.1V9.01a6.27 6.27 0 0 0-.69-.04 5.681 5.681 0 0 0-5.68 5.68 5.681 5.681 0 0 0 5.68 5.68 5.681 5.681 0 0 0 5.68-5.68V8.95a7.71 7.71 0 0 0 4.5 1.44V7.3a4.302 4.302 0 0 1-3.44-1.48z"/></svg>
+      <a href="booking.html" class="btn btn-primary btn-block">احجز الآن 🥞</a>
+      <div class="social-pair nav-social">
+        <!-- WhatsApp SVG -->
+        <a href="#" class="social-btn" aria-label="واتساب" data-wa-msg="مرحباً، أود الاستفسار عن لمّة بايت 🥞">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.118.554 4.107 1.523 5.83L0 24l6.335-1.507A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.67-.514-5.195-1.41l-.371-.221-3.762.895.952-3.654-.243-.386A9.959 9.959 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+          </svg>
         </a>
-        <a href="#" class="social-btn" data-whatsapp aria-label="واتساب">
-          <svg viewBox="0 0 24 24" fill="var(--brown-dark)"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.7-2.3-1.2-3.2-2.8-.2-.4.2-.4.7-1.3.1-.2 0-.4 0-.5-.1-.1-.5-1.2-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.2-1 1-1 2.3s1 2.7 1.1 2.9c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
+        <!-- TikTok SVG -->
+        <a href="https://www.tiktok.com/@lammah.bite" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="تيك توك">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.28 8.28 0 004.84 1.54V6.79a4.85 4.85 0 01-1.07-.1z"/>
+          </svg>
         </a>
       </div>
     </div>
   </nav>
 </div>
 
-<!-- ═══ MAIN ══════════════════════════════════════════════ -->
-<main>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-radial"></div>
-    <div class="hero-parallax-layer"></div>
-    <div class="container hero-content">
-      <img src="https://e.top4top.io/p_388642lk91.png" alt="شعار Lammah bite" class="hero-logo" width="190" height="190">
-      <h1 class="hero-title">Lammah bite</h1>
-      <p class="hero-tagline">مذاق لذيذ يخلي يومهم أجمل!</p>
-      <div class="hero-cta">
-        <a href="booking.html" class="btn btn-primary">احجز الآن</a>
-        <a href="offers.html" class="btn btn-secondary">شاهد العروض</a>
-      </div>
+<!-- ─── HERO ────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-parallax-layer"></div>
+  <div class="container hero-content">
+    <img src="https://e.top4top.io/p_388642lk91.png"
+         alt="شعار لمّة بايت"
+         class="hero-logo"
+         width="220" height="220" />
+    <h1 class="hero-title">لمّة بايت</h1>
+    <p class="hero-tagline">🥞 عربة بانكيك فاخرة — المدينة المنورة</p>
+    <div class="hero-cta">
+      <a href="booking.html" class="btn btn-primary">احجز الآن ✨</a>
+      <a href="offers.html" class="btn btn-secondary">اكتشف الباقات</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- OFFERS PREVIEW -->
-  <section>
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="eyebrow">عروضنا</span>
-        <h2>اختر ما يناسب مناسبتك</h2>
-        <p>تصفح عروضنا واحجز عبر الواتساب بسهولة</p>
+<!-- ─── OFFERS PREVIEW ──────────────────────────────────── -->
+<section id="offers">
+  <div class="container">
+    <div class="section-header reveal">
+      <!-- Gift / offer icon badge -->
+      <div class="section-badge">
+        <svg viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
       </div>
-      <div class="offers-wrapper reveal-group">
-        <div class="offers-track">
-          <!-- Offer 1 -->
-          <div class="offer-card reveal">
-            <div class="card-body">
-              <span class="offer-badge">عرض الأعراس والشبكات</span>
-              <p class="offer-summary">من 200 إلى 250 شخص — صوصات وفواكه وبسكويت ومشروب</p>
-              <div class="offer-price">
-                <span class="price-old">3299 ريال</span>
-                <div class="price-new-wrap">
-                  <span class="price-new">1899</span>
-                  <span class="price-currency">ريال</span>
-                </div>
+      <h2>باقاتنا الفاخرة</h2>
+      <p>اختر الباقة المناسبة لمناسبتك</p>
+    </div>
+    <div class="offers-wrapper">
+      <div class="offers-track reveal-group">
+
+        <!-- Weddings -->
+        <article class="offer-card reveal">
+          <div class="card-body">
+            <span class="offer-badge">الأعراس</span>
+            <h3>حفلات الزفاف</h3>
+            <p class="offer-summary">يناسب من 200 إلى 250 شخص</p>
+            <ul class="offer-detail-list">
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>بانكيك مع تشكيلة صوصات وفواكه</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>بسكويت ومشروب لكل ضيف</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>شامل التوصيل وعاملتين</li>
+            </ul>
+            <div class="offer-price">
+              <span class="price-old">3299</span>
+              <div class="price-new-wrap">
+                <span class="price-new" data-price="1899">1899</span>
+                <span class="price-currency">ريال</span>
               </div>
             </div>
-            <div class="card-footer">
-              <button class="btn btn-secondary btn-block" data-offer-modal="weddings">التفاصيل</button>
-            </div>
           </div>
-          <!-- Offer 2 -->
-          <div class="offer-card reveal">
-            <div class="card-body">
-              <span class="offer-badge">عرض الجمعات</span>
-              <p class="offer-summary">عربة البانكيك لـ 40 شخص — صوصات وفواكه وبسكويت ومشروب</p>
-              <div class="offer-price">
-                <span class="price-old">1899 ريال</span>
-                <div class="price-new-wrap">
-                  <span class="price-new">729</span>
-                  <span class="price-currency">ريال</span>
-                </div>
+          <div class="card-footer">
+            <a href="booking.html?offer=weddings" class="btn btn-primary btn-block" data-wa-offer="weddings">احجز الآن</a>
+          </div>
+        </article>
+
+        <!-- Gatherings -->
+        <article class="offer-card reveal">
+          <div class="card-body">
+            <span class="offer-badge">التجمعات</span>
+            <h3>التجمعات والسهرات</h3>
+            <p class="offer-summary">يناسب 40 شخص</p>
+            <ul class="offer-detail-list">
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>40 صحن ميني بانكيك</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>تشكيلة صوصات متنوعة</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>شامل التوصيل وعاملة للخدمة</li>
+            </ul>
+            <div class="offer-price">
+              <span class="price-old">1899</span>
+              <div class="price-new-wrap">
+                <span class="price-new" data-price="729">729</span>
+                <span class="price-currency">ريال</span>
               </div>
             </div>
-            <div class="card-footer">
-              <button class="btn btn-secondary btn-block" data-offer-modal="gatherings">التفاصيل</button>
-            </div>
           </div>
-          <!-- Offer 3 -->
-          <div class="offer-card reveal">
-            <div class="card-body">
-              <span class="offer-badge">عرض مناسبات الأطفال والمدارس</span>
-              <p class="offer-summary">حسب عدد الأطفال — بانكيك وعصير وحلاوة</p>
-              <div class="offer-price">
-                <div class="price-new-wrap">
-                  <span class="price-new">879</span>
-                  <span class="price-currency">ريال فقط</span>
-                </div>
+          <div class="card-footer">
+            <a href="booking.html?offer=gatherings" class="btn btn-primary btn-block" data-wa-offer="gatherings">احجز الآن</a>
+          </div>
+        </article>
+
+        <!-- Kids -->
+        <article class="offer-card reveal">
+          <div class="card-body">
+            <span class="offer-badge">الأطفال</span>
+            <h3>حفلات الأطفال</h3>
+            <p class="offer-summary">من 30 إلى 50 طفل</p>
+            <ul class="offer-detail-list">
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>بانكيك + عصير + جيلي + مارشميلو</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>أكياس حلوى غزل البنات على حسب عدد الأطفال</li>
+              <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>شامل التوصيل والشيف</li>
+            </ul>
+            <div class="offer-price">
+              <div class="price-new-wrap">
+                <span class="price-new" data-price="879">879</span>
+                <span class="price-currency">ريال</span>
               </div>
             </div>
-            <div class="card-footer">
-              <button class="btn btn-secondary btn-block" data-offer-modal="kids">التفاصيل</button>
-            </div>
           </div>
-        </div>
-        <div class="carousel-dots"></div>
+          <div class="card-footer">
+            <a href="booking.html?offer=kids" class="btn btn-primary btn-block" data-wa-offer="kids">احجز الآن</a>
+          </div>
+        </article>
+
+      </div><!-- /.offers-track -->
+      <div class="carousel-dots" aria-hidden="true">
+        <button class="carousel-dot active"></button>
+        <button class="carousel-dot"></button>
+        <button class="carousel-dot"></button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FEATURES STRIP -->
-  <section>
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="eyebrow">لماذا Lammah bite</span>
-        <h2>مميزاتنا</h2>
+<!-- ─── FEATURES ────────────────────────────────────────── -->
+<section id="features" style="background:var(--cream-card);">
+  <div class="container">
+    <div class="section-header reveal">
+      <!-- Star icon badge -->
+      <div class="section-badge">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       </div>
-      <div class="features-grid reveal-group">
-        <div class="feature-card reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="13" height="13" rx="2"/><path d="M14 9h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          <h3>شامل التوصيل</h3>
-          <p>خدمة توصيل مع كل عرض</p>
-        </div>
-        <div class="feature-card reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-3-8-6-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5-4 8-8 11z"/></svg>
-          <h3>داخل المدينة المنورة</h3>
-          <p>نخدم فقط داخل المدينة المنورة</p>
-        </div>
-        <div class="feature-card reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
-          <h3>جودة وطعم مميز</h3>
-          <p>مكونات طازجة وتقديم أنيق</p>
-        </div>
+      <h2>لماذا لمّة بايت؟</h2>
+      <p>نقدم تجربة فاخرة لا تُنسى</p>
+    </div>
+    <div class="features-grid reveal-group">
+      <div class="feature-card reveal">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <h3>جودة استثنائية</h3>
+        <p>مكوّنات طازجة يومياً بأعلى معايير الجودة</p>
+      </div>
+      <div class="feature-card reveal">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <h3>الحجز مسبقاً</h3>
+        <p>احجز قبل 24 ساعة وسنكون معك في الوقت المحدد</p>
+      </div>
+      <div class="feature-card reveal">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <h3>المدينة المنورة فقط</h3>
+        <p>نخدم جميع أحياء المدينة المنورة</p>
+      </div>
+      <div class="feature-card reveal">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        <h3>خدمة متكاملة</h3>
+        <p>شيف وعاملات متخصصات في كل مناسبة</p>
+      </div>
+      <div class="feature-card reveal">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        <h3>أسعار شاملة</h3>
+        <p>السعر شامل التوصيل والخدمة بدون أي رسوم إضافية</p>
+      </div>
+      <div class="feature-card reveal">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+        <h3>تواصل سريع</h3>
+        <p>نرد على واتساب فوراً لأي استفسار</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- INTRO -->
-  <section>
-    <div class="container">
-      <div class="intro-block reveal">
-        <p>Lammah bite هي عربة بانكيك وضيافة مناسبات في المدينة المنورة، نقدم خدماتنا للأعراس والشبكات، والجمعات، ومناسبات الأطفال والمدارس.</p>
-        <p><em>مذاق لذيذ يخلي يومهم أجمل!</em></p>
+<!-- ─── GALLERY PREVIEW ─────────────────────────────────── -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      <!-- Camera icon badge -->
+      <div class="section-badge">
+        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </div>
+      <h2>من مناسباتنا</h2>
+      <p>لحظات لا تُنسى مع لمّة بايت</p>
+    </div>
+    <div class="gallery-grid reveal-group">
+      <div class="gallery-item reveal" data-idx="0">
+        <img src="https://b.top4top.io/p_3886dro0e1.jpeg"
+             alt="صورة من لمّة بايت 1"
+             loading="lazy"
+             referrerpolicy="no-referrer" />
+      </div>
+      <div class="gallery-item reveal" data-idx="1">
+        <img src="https://c.top4top.io/p_3886pc12x2.jpeg"
+             alt="صورة من لمّة بايت 2"
+             loading="lazy"
+             referrerpolicy="no-referrer" />
+      </div>
+      <div class="gallery-item reveal" data-idx="2">
+        <img src="https://d.top4top.io/p_3886b1lcc3.jpeg"
+             alt="صورة من لمّة بايت 3"
+             loading="lazy"
+             referrerpolicy="no-referrer" />
       </div>
     </div>
-  </section>
-
-  <!-- GALLERY PREVIEW -->
-  <section>
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="eyebrow">معرض الصور</span>
-        <h2>لمحة من أعمالنا</h2>
-      </div>
-      <div class="gallery-grid reveal-group" data-gallery-grid data-limit="3"></div>
-      <div style="text-align:center; margin-top:32px;" class="reveal">
-        <a href="gallery.html" class="btn btn-secondary">شاهد المعرض كاملاً</a>
-      </div>
+    <div style="text-align:center; margin-top:32px;">
+      <a href="gallery.html" class="btn btn-secondary">عرض المزيد من الصور</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- BOOKING CTA -->
-  <section>
-    <div class="container">
-      <div class="intro-block reveal" style="text-align:center;">
-        <h2>جاهزين لمناسبتكم القادمة؟</h2>
-        <p>احجز عربة Lammah bite الآن عبر الواتساب</p>
-        <br>
-        <a href="booking.html" class="btn btn-primary">احجز الآن</a>
-      </div>
-    </div>
-  </section>
+<!-- ─── CTA BAND ────────────────────────────────────────── -->
+<section style="background:var(--brown-dark); padding:56px 0; text-align:center;">
+  <div class="container">
+    <h2 style="color:var(--gold-light); margin-bottom:12px;">جاهزون لمناسبتك! 🥞</h2>
+    <p style="color:rgba(255,255,255,0.7); max-width:520px; margin:0 auto 28px; font-size:18px;">احجز الآن وتمتع بتجربة بانكيك لا تُنسى في المدينة المنورة</p>
+    <a href="booking.html" class="btn btn-primary" style="background:var(--gold-gradient);color:var(--brown-dark);border-color:transparent;">احجز مناسبتك الآن ✨</a>
+  </div>
+</section>
 
-</main>
-
-<!-- ═══ FOOTER ════════════════════════════════════════════ -->
+<!-- ─── FOOTER ──────────────────────────────────────────── -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-col footer-col-brand">
-        <img src="https://e.top4top.io/p_388642lk91.png" alt="شعار Lammah bite" class="footer-logo-img" width="52" height="52">
-        <strong class="footer-brand-name">Lammah bite</strong>
-        <span class="footer-tagline-text">مذاق لذيذ يخلي يومهم أجمل!</span>
+
+      <!-- Brand column -->
+      <div class="footer-col-brand">
+        <img src="https://e.top4top.io/p_388642lk91.png"
+             alt="شعار لمّة بايت"
+             class="footer-logo-img"
+             width="64" height="64" />
+        <div class="footer-brand-name">لمّة بايت</div>
+        <div class="footer-tagline-text">🥞 بانكيك فاخر لكل مناسبة</div>
+        <p class="footer-brand-desc">عربة بانكيك متنقلة تخدم المدينة المنورة بأعلى معايير الجودة والفخامة.</p>
+        <div class="footer-social-pair">
+          <!-- WhatsApp -->
+          <a href="#" class="social-btn" aria-label="واتساب" data-wa-msg="مرحباً، أود الاستفسار عن لمّة بايت 🥞">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.118.554 4.107 1.523 5.83L0 24l6.335-1.507A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.67-.514-5.195-1.41l-.371-.221-3.762.895.952-3.654-.243-.386A9.959 9.959 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+          </a>
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@lammah.bite" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="تيك توك">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.28 8.28 0 004.84 1.54V6.79a4.85 4.85 0 01-1.07-.1z"/>
+            </svg>
+          </a>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>روابط سريعة</h4>
-        <div class="footer-nav-grid">
+
+      <!-- Nav column -->
+      <div>
+        <span class="footer-col-heading">صفحات الموقع</span>
+        <nav class="footer-nav-grid" aria-label="روابط التذييل">
           <a href="index.html">الرئيسية</a>
-          <a href="offers.html">العروض</a>
-          <a href="gallery.html">معرض الصور</a>
+          <a href="offers.html">الباقات</a>
+          <a href="gallery.html">المعرض</a>
           <a href="about.html">من نحن</a>
-          <a href="booking.html">الحجز</a>
+          <a href="booking.html">احجز الآن</a>
           <a href="faq.html">الأسئلة الشائعة</a>
-        </div>
+        </nav>
       </div>
-      <div class="footer-col footer-col-contact">
-        <h4>تواصل</h4>
-        <div class="footer-area">
-          <strong>منطقة الخدمة</strong>
-          المدينة المنورة — داخل المدينة المنورة فقط
+
+      <!-- Contact column -->
+      <div class="footer-col-contact">
+        <span class="footer-col-heading">تواصل معنا</span>
+        <div class="footer-loc">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          المدينة المنورة، المملكة العربية السعودية
         </div>
-        <a href="#" class="btn btn-primary" data-whatsapp data-whatsapp-msg="مرحباً، أرغب بالاستفسار عن خدمات Lammah bite">واتساب</a>
-        <div class="footer-social-pair social-pair">
-          <a href="https://www.tiktok.com/@lammah.bite" target="_blank" rel="noopener" class="social-btn" aria-label="تيك توك">
-            <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.85)"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5 2.592 2.592 0 0 1-2.59-2.5 2.592 2.592 0 0 1 2.59-2.5c.24 0 .47.04.69.1V9.01a6.27 6.27 0 0 0-.69-.04 5.681 5.681 0 0 0-5.68 5.68 5.681 5.681 0 0 0 5.68 5.68 5.681 5.681 0 0 0 5.68-5.68V8.95a7.71 7.71 0 0 0 4.5 1.44V7.3a4.302 4.302 0 0 1-3.44-1.48z"/></svg>
-          </a>
-          <a href="#" class="social-btn" data-whatsapp aria-label="واتساب">
-            <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.85)"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.7-2.3-1.2-3.2-2.8-.2-.4.2-.4.7-1.3.1-.2 0-.4 0-.5-.1-.1-.5-1.2-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.2-1 1-1 2.3s1 2.7 1.1 2.9c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
-          </a>
-        </div>
+        <p class="footer-policy-line">الحجز مسبقاً قبل 24 ساعة<br/>عربون 50% من المبلغ<br/>الإلغاء قبل 48 ساعة</p>
+        <a href="booking.html" class="btn btn-primary" style="width:fit-content;">احجز الآن 🥞</a>
       </div>
+
     </div>
-    <div class="footer-divider"></div>
-    <div class="footer-bottom">© Lammah bite</div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom container">
+    <p>© 2024 لمّة بايت — جميع الحقوق محفوظة | المدينة المنورة</p>
   </div>
 </footer>
 
-<!-- Floating WhatsApp -->
-<a href="#" class="floating-whatsapp" data-whatsapp data-whatsapp-msg="مرحباً، أرغب بالاستفسار عن خدمات Lammah bite" aria-label="تواصل عبر واتساب">
-  <svg viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.7-2.3-1.2-3.2-2.8-.2-.4.2-.4.7-1.3.1-.2 0-.4 0-.5-.1-.1-.5-1.2-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.2-1 1-1 2.3s1 2.7 1.1 2.9c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
+<!-- ─── FLOATING WHATSAPP ────────────────────────────────── -->
+<a href="#" class="floating-whatsapp" aria-label="تواصل معنا عبر واتساب" data-wa-msg="مرحباً، أود الاستفسار عن لمّة بايت 🥞">
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.118.554 4.107 1.523 5.83L0 24l6.335-1.507A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.67-.514-5.195-1.41l-.371-.221-3.762.895.952-3.654-.243-.386A9.959 9.959 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
 </a>
 
-<!-- Lightbox (needed because gallery preview is here) -->
-<div class="lightbox">
-  <button class="lightbox-close" aria-label="إغلاق">&times;</button>
-  <button class="lightbox-prev" aria-label="السابق">&#8594;</button>
-  <img src="" alt="">
-  <button class="lightbox-next" aria-label="التالي">&#8592;</button>
+<!-- Offer modal (shared) -->
+<div class="offer-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
+  <div class="modal-backdrop"></div>
+  <div class="modal-panel">
+    <div class="modal-drag-handle"></div>
+    <button class="modal-close-btn" aria-label="إغلاق">✕</button>
+    <span class="modal-offer-badge"></span>
+    <h2 id="modal-title"></h2>
+    <p class="modal-capacity"></p>
+    <ul class="modal-list"></ul>
+    <div class="modal-price-row">
+      <span class="price-old modal-price-old" data-old-price=""></span>
+      <div class="price-new-wrap">
+        <span class="price-new modal-price-new"></span>
+        <span class="price-currency">ريال</span>
+      </div>
+    </div>
+    <div class="modal-incl-row"></div>
+    <p class="modal-policy-note">📋 الحجز قبل 24 ساعة · عربون 50% · الإلغاء قبل 48 ساعة</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="#" class="btn btn-primary" data-modal-wa style="flex:1;">احجز عبر واتساب 💬</a>
+      <a href="booking.html" class="btn btn-secondary" data-modal-booking-page style="flex:1;">نموذج الحجز</a>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" role="dialog" aria-label="عرض الصورة">
+  <img src="" alt="صورة مكبّرة" />
+  <button class="lightbox-close" aria-label="إغلاق">✕</button>
+  <button class="lightbox-prev" aria-label="السابق">&#8250;</button>
+  <button class="lightbox-next" aria-label="التالي">&#8249;</button>
 </div>
 
 <script src="js/main.js"></script>
