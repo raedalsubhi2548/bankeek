@@ -6,82 +6,100 @@
 /* ── EDIT ME ── */
 const WHATSAPP_NUMBER = "9665XXXXXXXX";
 
-/* ─── OFFER DATA ──────────────────────────────────────────── */
-const OFFERS_DATA = {
+/* ─── OFFERS — SINGLE SOURCE OF TRUTH ─────────────────────── */
+const OFFERS = {
   weddings: {
-    label:    'حفلات الزفاف',
-    badge:    'الأعراس',
-    capacity: 'يناسب من 200 إلى 250 شخص',
+    slug:     'weddings',
+    title:    'عرض الأعراس والشبكات',
+    capacity: 'من 200 إلى 250 شخص',
+    sub:      '',
+    intro:    'يشمل العرض التالي:',
     items: [
-      'بانكيك مع تشكيلة صوصات',
-      'فواكه طازجة وبسكويت',
-      'مشروب لكل ضيف',
+      '3 أنواع من الصوصات: نوتيلا — بستاشيو — لوتس',
+      '3 أنواع من الفواكه الطازجة: فراولة — توت أزرق — توت أحمر',
+      'نوعين من البسكويت للتزيين: لوتس — دايجستف',
+      'اختيار مشروب: قهوة سوداء أو قهوة سعودية',
     ],
-    priceOld: 3299,
-    priceNew: 1899,
+    priceOld:   3299,
+    priceNew:   1899,
     inclusions: ['شامل التوصيل', 'عاملتين للخدمة'],
   },
   gatherings: {
-    label:    'التجمعات',
-    badge:    'التجمعات',
-    capacity: 'يناسب 40 شخص',
+    slug:     'gatherings',
+    title:    'عرض الجمعات',
+    capacity: 'عربة البانكيك لـ 40 شخص',
+    sub:      'تشمل 40 صحن ميني بانكيك',
+    intro:    'مع الإضافات التالية:',
     items: [
-      '40 صحن ميني بانكيك',
-      'تشكيلة صوصات متنوعة',
-      'توصيل مجاني',
+      '3 أنواع من الصوصات: نوتيلا — بستاشيو — لوتس',
+      'نوعين من الفواكه الطازجة (العميل يختار نوعين من: فراولة — توت أزرق — توت أحمر)',
+      'نوعين من بسكويت التزيين: بسكويت لوتس — بسكويت دايجستف',
+      'اختيار مشروب: قهوة سوداء أو قهوة سعودية',
     ],
-    priceOld: 1899,
-    priceNew: 729,
+    priceOld:   1899,
+    priceNew:   729,
     inclusions: ['شامل التوصيل', 'عاملة للخدمة'],
   },
   kids: {
-    label:    'حفلات الأطفال',
-    badge:    'الأطفال',
+    slug:     'kids',
+    title:    'عرض مناسبات الأطفال والمدارس',
     capacity: 'من 30 إلى 50 طفل',
+    sub:      'يشمل البانكيك ونوع عصير',
+    intro:    'مع الإضافات التالية:',
     items: [
-      'بانكيك لكل طفل',
-      'عصير + جيلي + مارشميلو',
+      'حلاوة جيلي',
+      'مارشميلو',
       'أكياس حلوى غزل البنات على حسب عدد الأطفال',
-      'شامل التوصيل والشيف',
+      'نوع عصير',
     ],
-    priceOld: null,
-    priceNew: 879,
-    inclusions: ['شامل التوصيل', 'شيف متخصص'],
+    priceOld:   null,
+    priceNew:   879,
+    inclusions: ['شامل التوصيل والشيف'],
   },
 };
+
+const OFFER_ORDER = ['weddings', 'gatherings', 'kids'];
 
 /* ─── UTILS ───────────────────────────────────────────────── */
 const qs  = (sel, scope = document) => scope.querySelector(sel);
 const qsa = (sel, scope = document) => [...scope.querySelectorAll(sel)];
 
+function esc(str) {
+  return String(str).replace(/[&<>"']/g, c => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
 function waLink(text) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
+const ICON_CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+const ICON_SPARK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 5.3 5.3 1.7-5.3 2.2L12 17.5l-2.2-5.3L4.5 10l5.3-1.7z"/></svg>';
+
+/* ─── FOOTER YEAR ─────────────────────────────────────────── */
+function initFooterYear() {
+  qsa('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 }
 
 /* ─── SCROLL PROGRESS ─────────────────────────────────────── */
 function initScrollProgress() {
   const bar = qs('#scroll-progress');
   if (!bar) return;
-  function update() {
+  const update = () => {
     const h = document.documentElement;
-    const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
-    bar.style.width = pct + '%';
-  }
+    const denom = h.scrollHeight - h.clientHeight;
+    bar.style.width = (denom > 0 ? (h.scrollTop / denom) * 100 : 0) + '%';
+  };
   window.addEventListener('scroll', update, { passive: true });
   update();
 }
 
-/* ─── HEADER SCROLL — only background/blur/border/shadow ──── */
+/* ─── HEADER SCROLL — background only, height never changes ─ */
 function initHeaderScroll() {
   const hdr = qs('.site-header');
   if (!hdr) return;
-  let last = 0;
-  function update() {
-    const y = window.scrollY || window.pageYOffset;
-    if (y > 48 && !hdr.classList.contains('scrolled')) hdr.classList.add('scrolled');
-    if (y <= 48 && hdr.classList.contains('scrolled')) hdr.classList.remove('scrolled');
-    last = y;
-  }
+  const update = () => hdr.classList.toggle('scrolled', (window.scrollY || 0) > 48);
   window.addEventListener('scroll', update, { passive: true });
   update();
 }
@@ -98,6 +116,7 @@ function initNav() {
     overlay.classList.add('open');
     document.body.classList.add('nav-open');
     hamburger && hamburger.setAttribute('aria-expanded', 'true');
+    closeBtn && closeBtn.focus();
   }
   function close() {
     overlay.classList.remove('open');
@@ -105,219 +124,235 @@ function initNav() {
     hamburger && hamburger.setAttribute('aria-expanded', 'false');
   }
 
-  hamburger  && hamburger.addEventListener('click', open);
-  closeBtn   && closeBtn.addEventListener('click', close);
-  backdrop   && backdrop.addEventListener('click', close);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  hamburger && hamburger.addEventListener('click', open);
+  closeBtn  && closeBtn.addEventListener('click', close);
+  backdrop  && backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+  });
 
-  /* Active link highlight */
   const current = location.pathname.split('/').pop() || 'index.html';
   qsa('.nav-links a').forEach(a => {
-    const href = a.getAttribute('href') || '';
-    if (href === current || (current === '' && href === 'index.html')) a.classList.add('active');
+    if (a.getAttribute('href') === current) a.classList.add('active');
   });
 }
 
-/* ─── WHATSAPP BUTTONS ────────────────────────────────────── */
-function initWAButtons() {
-  /* floating button */
-  const fab = qs('.floating-whatsapp');
-  if (fab) fab.href = waLink('مرحباً، أود الاستفسار عن خدمات لمّة بايت 🥞');
+/* ─── WHATSAPP LINKS ──────────────────────────────────────── */
+function initWALinks() {
+  qsa('[data-wa-msg]').forEach(el => { el.href = waLink(el.dataset.waMsg); });
+}
 
-  /* CTA buttons with data-wa-offer */
-  qsa('[data-wa-offer]').forEach(btn => {
-    const key  = btn.dataset.waOffer;
-    const data = OFFERS_DATA[key];
-    if (!data) return;
-    btn.href = waLink(`مرحباً، أود حجز باقة ${data.label}، سعر ${data.priceNew} ريال ✨`);
-  });
+/* ─── OFFER CARDS ─────────────────────────────────────────── */
+function cardHTML(o) {
+  const oldPrice = o.priceOld ? `<span class="price-old">${o.priceOld}</span>` : '';
+  const chips = o.inclusions
+    .map(inc => `<span class="incl-tag">${ICON_CHECK}${esc(inc)}</span>`).join('');
 
-  /* Generic wa links */
-  qsa('[data-wa-msg]').forEach(btn => {
-    btn.href = waLink(btn.dataset.waMsg);
+  return `
+    <article class="offer-card reveal">
+      <div class="card-body">
+        <span class="offer-badge">${esc(o.title)}</span>
+        <p class="offer-capacity">${esc(o.capacity)}</p>
+        ${o.sub ? `<p class="offer-sub">${esc(o.sub)}</p>` : ''}
+        <div class="offer-price">
+          ${oldPrice}
+          <span class="price-new-wrap">
+            <span class="price-new">${o.priceNew}</span>
+            <span class="price-currency">ريال</span>
+          </span>
+        </div>
+        <div class="offer-inclusions">${chips}</div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-primary" href="booking.html?offer=${o.slug}">احجز الآن</a>
+        <button type="button" class="btn btn-secondary" data-open-offer="${o.slug}">عرض التفاصيل</button>
+      </div>
+    </article>`;
+}
+
+function renderOfferCards() {
+  qsa('[data-offers-grid]').forEach(grid => {
+    grid.innerHTML = OFFER_ORDER.map(k => cardHTML(OFFERS[k])).join('');
   });
 }
 
 /* ─── OFFER MODAL ─────────────────────────────────────────── */
 function initOfferModal() {
-  const modal    = qs('.offer-modal');
-  const backdrop = modal && qs('.modal-backdrop', modal);
-  const closeBtn = modal && qs('.modal-close-btn', modal);
+  const modal = qs('#offer-modal');
   if (!modal) return;
 
-  function renderModal(key) {
-    const d = OFFERS_DATA[key];
-    if (!d) return;
-    qs('.modal-offer-badge', modal).textContent  = d.badge;
-    qs('#modal-title', modal).textContent        = d.label;
-    qs('.modal-capacity', modal).textContent     = d.capacity;
-    qs('.modal-price-new', modal).textContent    = d.priceNew.toLocaleString('ar-SA');
-    const oldEl = qs('.modal-price-old', modal);
-    if (oldEl) { oldEl.textContent = d.priceOld ? d.priceNew.toLocaleString('ar-SA') : ''; oldEl.style.display = d.priceOld ? '' : 'none'; }
-    const oldWrap = qs('[data-old-price]', modal);
-    if (oldWrap) oldWrap.textContent = d.priceOld ? d.priceOld.toLocaleString('ar-SA') : '';
+  const panel    = qs('.modal-panel', modal);
+  const backdrop = qs('.modal-backdrop', modal);
+  const closeBtn = qs('.modal-close-btn', modal);
+  const body     = qs('.modal-body', modal);
 
-    /* items list */
-    const list = qs('.modal-list', modal);
-    list.innerHTML = d.items.map(item => `
-      <li>
-        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        ${item}
-      </li>`).join('');
+  let lastTrigger = null;
+  let savedScroll = 0;
 
-    /* inclusions */
-    const inclRow = qs('.modal-incl-row', modal);
-    if (inclRow) {
-      inclRow.innerHTML = d.inclusions.map(inc => `
-        <span class="incl-tag">
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>${inc}
-        </span>`).join('');
-    }
+  function render(key) {
+    const o = OFFERS[key];
+    if (!o) return false;
 
-    /* WA book link */
-    const bookBtn = qs('[data-modal-wa]', modal);
-    if (bookBtn) bookBtn.href = waLink(`مرحباً، أود حجز باقة ${d.label}، سعر ${d.priceNew} ريال ✨`);
-    const bookPage = qs('[data-modal-booking-page]', modal);
-    if (bookPage) bookPage.href = `booking.html?offer=${key}`;
+    const oldPrice = o.priceOld ? `<span class="price-old">${o.priceOld}</span>` : '';
+    const rows  = o.items.map(i => `<li>${ICON_SPARK}<span>${esc(i)}</span></li>`).join('');
+    const chips = o.inclusions.map(i => `<span class="incl-tag">${ICON_CHECK}${esc(i)}</span>`).join('');
+
+    body.innerHTML = `
+      <span class="modal-offer-pill" id="offer-modal-title">${esc(o.title)}</span>
+      <h2 class="modal-capacity">${esc(o.capacity)}</h2>
+      ${o.sub ? `<p class="modal-sub">${esc(o.sub)}</p>` : ''}
+      <div class="gold-divider"></div>
+      <h3 class="modal-intro">${esc(o.intro)}</h3>
+      <ul class="modal-list">${rows}</ul>
+      <div class="gold-divider"></div>
+      <div class="modal-price-row">
+        ${oldPrice}
+        <span class="price-new-wrap">
+          <span class="price-new modal-price-new">${o.priceNew}</span>
+          <span class="price-currency">ريال</span>
+        </span>
+      </div>
+      <div class="modal-incl-row">${chips}</div>
+      <div class="modal-policy-note">
+        <p>الحجز قبل المناسبة بـ 24 ساعة على الأقل</p>
+        <p>العربون نصف المبلغ عند تأكيد الحجز</p>
+      </div>
+      <a class="btn btn-primary btn-block" href="booking.html?offer=${o.slug}">احجز هذا العرض</a>`;
+    return true;
   }
 
-  function openModal(key) {
-    renderModal(key);
-    modal.setAttribute('aria-hidden', 'false');
+  function trapFocus(e) {
+    if (e.key !== 'Tab') return;
+    const focusables = qsa(
+      'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      panel
+    ).filter(el => el.offsetParent !== null);
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last  = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
+  function open(key, trigger) {
+    if (!render(key)) return;
+    lastTrigger = trigger || null;
+    savedScroll = window.scrollY || 0;
+    document.body.style.top = `-${savedScroll}px`;
     document.body.classList.add('modal-open');
-    modal.focus();
-  }
-  function closeModal() {
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('modal-open');
+    modal.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(() => modal.classList.add('open'));
+    closeBtn.focus();
+    document.addEventListener('keydown', trapFocus);
   }
 
-  qsa('[data-open-offer]').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.openOffer)));
-  closeBtn  && closeBtn.addEventListener('click', closeModal);
-  backdrop  && backdrop.addEventListener('click', closeModal);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal(); });
+  function close() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.removeEventListener('keydown', trapFocus);
+    document.body.classList.remove('modal-open');
+    document.body.style.top = '';
+    window.scrollTo(0, savedScroll);
+    if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+  }
+
+  document.addEventListener('click', e => {
+    const trigger = e.target.closest('[data-open-offer]');
+    if (!trigger) return;
+    e.preventDefault();
+    open(trigger.dataset.openOffer, trigger);
+  });
+
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) close();
+  });
+
+  /* Mobile: swipe the sheet down to dismiss */
+  let startY = null, deltaY = 0;
+  panel.addEventListener('touchstart', e => {
+    if (window.innerWidth >= 768 || panel.scrollTop > 0) return;
+    startY = e.touches[0].clientY;
+    deltaY = 0;
+  }, { passive: true });
+  panel.addEventListener('touchmove', e => {
+    if (startY === null) return;
+    deltaY = e.touches[0].clientY - startY;
+    if (deltaY > 0) panel.style.transform = `translateY(${deltaY}px)`;
+  }, { passive: true });
+  panel.addEventListener('touchend', () => {
+    if (startY === null) return;
+    panel.style.transform = '';
+    if (deltaY > 110) close();
+    startY = null; deltaY = 0;
+  });
 }
 
 /* ─── GALLERY ─────────────────────────────────────────────── */
 const GALLERY_IMAGES = [
-  { src: 'https://b.top4top.io/p_3886dro0e1.jpeg', alt: 'صورة من لمّة بايت 1' },
-  { src: 'https://c.top4top.io/p_3886pc12x2.jpeg', alt: 'صورة من لمّة بايت 2' },
-  { src: 'https://d.top4top.io/p_3886b1lcc3.jpeg', alt: 'صورة من لمّة بايت 3' },
-  { src: 'https://e.top4top.io/p_3886fusw64.jpeg', alt: 'صورة من لمّة بايت 4' },
-  { src: 'https://f.top4top.io/p_3886vk7zh5.jpeg', alt: 'صورة من لمّة بايت 5' },
-  { src: 'https://g.top4top.io/p_3886y69ca6.jpeg', alt: 'صورة من لمّة بايت 6' },
+  { src: 'https://b.top4top.io/p_3886dro0e1.jpeg', alt: 'من مناسبات Lammah bite 1' },
+  { src: 'https://c.top4top.io/p_3886pc12x2.jpeg', alt: 'من مناسبات Lammah bite 2' },
+  { src: 'https://d.top4top.io/p_3886b1lcc3.jpeg', alt: 'من مناسبات Lammah bite 3' },
+  { src: 'https://e.top4top.io/p_3886fusw64.jpeg', alt: 'من مناسبات Lammah bite 4' },
+  { src: 'https://f.top4top.io/p_3886vk7zh5.jpeg', alt: 'من مناسبات Lammah bite 5' },
+  { src: 'https://g.top4top.io/p_3886y69ca6.jpeg', alt: 'من مناسبات Lammah bite 6' },
 ];
 
-function buildGalleryItem(imgData, idx) {
-  const item = document.createElement('div');
-  item.className = 'gallery-item reveal';
-  item.dataset.idx = idx;
-
-  const img = document.createElement('img');
-  img.src              = imgData.src;
-  img.alt              = imgData.alt;
-  img.loading          = 'lazy';
-  img.setAttribute('referrerpolicy', 'no-referrer');
-
-  /* onerror: retry without referrer-policy override, then hide */
-  img.onerror = function() {
-    // try crossOrigin anonymous once
-    if (!this.dataset.retried) {
-      this.dataset.retried = '1';
-      const orig = this.src;
-      this.src = '';
-      this.crossOrigin = 'anonymous';
-      this.src = orig;
-    } else {
-      // hide broken tile
-      this.closest('.gallery-item').style.display = 'none';
-    }
-  };
-
-  item.appendChild(img);
-  return item;
-}
-
 function initGallery() {
-  const grids = qsa('.gallery-js-grid');
-  grids.forEach(grid => {
-    const limit = parseInt(grid.dataset.limit) || GALLERY_IMAGES.length;
-    GALLERY_IMAGES.slice(0, limit).forEach((imgData, idx) => {
-      grid.appendChild(buildGalleryItem(imgData, idx));
-    });
+  qsa('[data-gallery-grid]').forEach(grid => {
+    const limit = parseInt(grid.dataset.limit, 10) || GALLERY_IMAGES.length;
+    grid.innerHTML = GALLERY_IMAGES.slice(0, limit).map((img, idx) => `
+      <button type="button" class="gallery-item reveal" data-idx="${idx}" aria-label="${esc(img.alt)}">
+        <img src="${img.src}" alt="${esc(img.alt)}" loading="lazy" referrerpolicy="no-referrer" />
+      </button>`).join('');
   });
 }
 
 /* ─── LIGHTBOX ────────────────────────────────────────────── */
 function initLightbox() {
-  const lb    = qs('.lightbox');
-  const lbImg = lb && qs('img', lb);
-  const lbClose = lb && qs('.lightbox-close', lb);
-  const lbPrev  = lb && qs('.lightbox-prev', lb);
-  const lbNext  = lb && qs('.lightbox-next', lb);
-  if (!lb || !lbImg) return;
-  let currentIdx = 0;
+  const lb = qs('.lightbox');
+  if (!lb) return;
+  const lbImg   = qs('img', lb);
+  const lbClose = qs('.lightbox-close', lb);
+  const lbPrev  = qs('.lightbox-prev', lb);
+  const lbNext  = qs('.lightbox-next', lb);
+  let currentIdx  = 0;
+  let savedScroll = 0;
 
-  function showIdx(idx) {
+  function show(idx) {
     const total = GALLERY_IMAGES.length;
     currentIdx = ((idx % total) + total) % total;
-    const src = GALLERY_IMAGES[currentIdx]?.src;
-    if (src) { lbImg.src = src; lbImg.setAttribute('referrerpolicy', 'no-referrer'); }
+    lbImg.src = GALLERY_IMAGES[currentIdx].src;
+    lbImg.alt = GALLERY_IMAGES[currentIdx].alt;
   }
-  function open(idx) { showIdx(idx); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
-  function close()   { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function open(idx) {
+    show(idx);
+    savedScroll = window.scrollY || 0;
+    document.body.style.top = `-${savedScroll}px`;
+    document.body.classList.add('modal-open');
+    lb.classList.add('open');
+  }
+  function close() {
+    lb.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    document.body.style.top = '';
+    window.scrollTo(0, savedScroll);
+  }
 
   document.addEventListener('click', e => {
-    const gi = e.target.closest('.gallery-item');
-    if (gi) { open(parseInt(gi.dataset.idx) || 0); }
+    const item = e.target.closest('.gallery-item');
+    if (item) open(parseInt(item.dataset.idx, 10) || 0);
   });
-  lbClose && lbClose.addEventListener('click', close);
+  lbClose.addEventListener('click', close);
   lb.addEventListener('click', e => { if (e.target === lb) close(); });
-  lbPrev  && lbPrev.addEventListener('click', () => showIdx(currentIdx - 1));
-  lbNext  && lbNext.addEventListener('click', () => showIdx(currentIdx + 1));
+  lbPrev.addEventListener('click', () => show(currentIdx - 1));
+  lbNext.addEventListener('click', () => show(currentIdx + 1));
   document.addEventListener('keydown', e => {
     if (!lb.classList.contains('open')) return;
     if (e.key === 'Escape')     close();
-    if (e.key === 'ArrowRight') showIdx(currentIdx - 1);
-    if (e.key === 'ArrowLeft')  showIdx(currentIdx + 1);
-  });
-}
-
-/* ─── CAROUSEL DOTS ───────────────────────────────────────── */
-function initCarouselDots() {
-  const track = qs('.offers-track');
-  if (!track) return;
-  const dots = qsa('.carousel-dot');
-  if (!dots.length) return;
-
-  const cards = qsa('.offer-card', track);
-  function update() {
-    const scrollLeft = track.scrollLeft;
-    const cardW = cards[0]?.offsetWidth + 16 || 1;
-    const idx = Math.round(scrollLeft / cardW);
-    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-  }
-  track.addEventListener('scroll', update, { passive: true });
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      const cardW = cards[0]?.offsetWidth + 16 || 1;
-      track.scrollTo({ left: i * cardW, behavior: 'smooth' });
-    });
-  });
-  update();
-}
-
-/* ─── CARD TILT ───────────────────────────────────────────── */
-function initCardTilt() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  qsa('.offer-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width  - 0.5;
-      const y = (e.clientY - r.top)  / r.height - 0.5;
-      card.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-4px)`;
-    });
-    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    if (e.key === 'ArrowRight') show(currentIdx - 1);
+    if (e.key === 'ArrowLeft')  show(currentIdx + 1);
   });
 }
 
@@ -328,13 +363,15 @@ function initAccordion() {
     const ans = qs('.accordion-answer', item);
     if (!btn || !ans) return;
     btn.addEventListener('click', () => {
-      const open = item.classList.contains('open');
+      const wasOpen = item.classList.contains('open');
       qsa('.accordion-item.open').forEach(o => {
         o.classList.remove('open');
+        qs('.accordion-question', o).setAttribute('aria-expanded', 'false');
         qs('.accordion-answer', o).style.maxHeight = '';
       });
-      if (!open) {
+      if (!wasOpen) {
         item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
         ans.style.maxHeight = ans.scrollHeight + 'px';
       }
     });
@@ -342,53 +379,46 @@ function initAccordion() {
 }
 
 /* ─── BOOKING FORM ────────────────────────────────────────── */
-const OFFER_LABELS = {
-  weddings:   'حفلات الزفاف (1899 ريال) — يناسب 200–250 شخص',
-  gatherings: 'التجمعات (729 ريال) — يناسب 40 شخص',
-  kids:       'حفلات الأطفال (879 ريال) — من 30 إلى 50 طفل',
-};
-
 function initBookingForm() {
   const form = qs('#booking-form');
   if (!form) return;
 
-  /* pre-select offer from URL */
-  const params    = new URLSearchParams(location.search);
-  const offerKey  = params.get('offer');
-  const selectEl  = qs('#offer-select', form);
-  if (offerKey && selectEl) {
-    for (const opt of selectEl.options) { if (opt.value === offerKey) { opt.selected = true; break; } }
+  const selectEl = qs('#offer-select', form);
+  if (selectEl) {
+    selectEl.innerHTML =
+      '<option value="">اختر العرض</option>' +
+      OFFER_ORDER.map(k => {
+        const o = OFFERS[k];
+        return `<option value="${o.slug}">${esc(o.title)} — ${o.priceNew} ريال</option>`;
+      }).join('');
+
+    const offerKey = new URLSearchParams(location.search).get('offer');
+    if (offerKey && OFFERS[offerKey]) selectEl.value = offerKey;
   }
 
   form.addEventListener('submit', e => {
     e.preventDefault();
     let valid = true;
     qsa('[required]', form).forEach(field => {
-      const err = field.parentElement.querySelector('.form-error');
-      if (!field.value.trim()) {
-        if (err) err.classList.add('show');
-        valid = false;
-      } else {
-        if (err) err.classList.remove('show');
-      }
+      const err = field.closest('.form-group')?.querySelector('.form-error');
+      const ok  = field.value.trim() !== '';
+      if (err) err.classList.toggle('show', !ok);
+      if (!ok) valid = false;
     });
     if (!valid) return;
 
-    const name   = qs('#name-input', form)?.value  || '';
-    const phone  = qs('#phone-input', form)?.value || '';
-    const offer  = qs('#offer-select', form)?.value || '';
-    const date   = qs('#date-input', form)?.value  || '';
-    const extras = qsa('.extras-check:checked', form).map(c => c.value);
-    const notes  = qs('#notes-input', form)?.value || '';
-    const offerLabel = OFFER_LABELS[offer] || offer;
+    const name  = qs('#name-input', form)?.value.trim()  || '';
+    const phone = qs('#phone-input', form)?.value.trim() || '';
+    const date  = qs('#date-input', form)?.value         || '';
+    const notes = qs('#notes-input', form)?.value.trim() || '';
+    const offer = OFFERS[selectEl?.value || ''];
 
     const msg = [
-      `مرحباً، أود الحجز من موقع لمّة بايت 🥞`,
+      'مرحباً، أود الحجز من موقع Lammah bite',
       `الاسم: ${name}`,
       `الجوال: ${phone}`,
-      `الباقة: ${offerLabel}`,
+      offer ? `العرض: ${offer.title} — ${offer.priceNew} ريال` : '',
       `التاريخ: ${date}`,
-      extras.length ? `الإضافات: ${extras.join(' - ')}` : '',
       notes ? `ملاحظات: ${notes}` : '',
     ].filter(Boolean).join('\n');
 
@@ -398,63 +428,31 @@ function initBookingForm() {
 
 /* ─── REVEAL ON SCROLL ────────────────────────────────────── */
 function initReveal() {
+  const els = qsa('.reveal');
   if (!('IntersectionObserver' in window)) {
-    qsa('.reveal').forEach(el => el.classList.add('visible'));
+    els.forEach(el => el.classList.add('visible'));
     return;
   }
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); obs.unobserve(en.target); } });
-  }, { threshold: 0.12 });
-  qsa('.reveal').forEach(el => obs.observe(el));
-}
-
-/* ─── PRICE COUNT-UP ──────────────────────────────────────── */
-function initPriceReveal() {
-  const obs = new IntersectionObserver(entries => {
     entries.forEach(en => {
-      if (!en.isIntersecting) return;
-      const el  = en.target;
-      const end = parseInt(el.dataset.price) || 0;
-      let start = 0;
-      const dur = 700;
-      const step = timestamp => {
-        if (!start) start = timestamp;
-        const p = Math.min((timestamp - start) / dur, 1);
-        el.textContent = Math.floor(p * end).toLocaleString('ar-SA');
-        if (p < 1) requestAnimationFrame(step);
-        else { el.textContent = end.toLocaleString('ar-SA'); el.classList.add('counted'); }
-      };
-      requestAnimationFrame(step);
-      obs.unobserve(el);
+      if (en.isIntersecting) { en.target.classList.add('visible'); obs.unobserve(en.target); }
     });
-  }, { threshold: 0.5 });
-  qsa('.price-new[data-price]').forEach(el => obs.observe(el));
-}
-
-/* ─── PARALLAX ────────────────────────────────────────────── */
-function initParallax() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const layers = qsa('.hero-parallax-layer');
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    layers.forEach(l => { l.style.transform = `translateY(${y * 0.15}px)`; });
-  }, { passive: true });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
 }
 
 /* ─── INIT ────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
+  initFooterYear();
   initScrollProgress();
   initHeaderScroll();
   initNav();
-  initWAButtons();
+  initWALinks();
+  renderOfferCards();
   initOfferModal();
   initGallery();
   initLightbox();
-  initCarouselDots();
-  initCardTilt();
   initAccordion();
   initBookingForm();
   initReveal();
-  initPriceReveal();
-  initParallax();
 });
