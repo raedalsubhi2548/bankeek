@@ -60,30 +60,22 @@ const OFFERS = {
 
 const OFFER_ORDER = ['weddings', 'gatherings', 'kids'];
 
-/* ─── INGREDIENT THUMBNAILS ───────────────────────────────── */
-function _bowl(fill, extra) {
-  return '<svg viewBox="0 0 64 64" width="64" height="64" xmlns="http://www.w3.org/2000/svg">'
-    + '<circle cx="32" cy="34" r="24" fill="#F5E9DA" stroke="#C9A063" stroke-width="2.5" stroke-linecap="round"/>'
-    + '<circle cx="32" cy="34" r="17" fill="' + fill + '" stroke="none"/>'
-    + (extra || '')
-    + '<circle cx="24" cy="26" r="4" fill="#FFFFFF" opacity="0.22" stroke="none"/>'
-    + '</svg>';
-}
-const THUMB_SVGS = {
-  'نوتيلا':          _bowl('#4A2C17', '<ellipse cx="32" cy="35" rx="10" ry="5" fill="#6B3E22" stroke="none"/>'),
-  'بستاشيو':         _bowl('#A8B968', '<circle cx="29" cy="33" r="3.5" fill="#8FA04E" stroke="none"/><circle cx="36" cy="36" r="3" fill="#8FA04E" stroke="none"/>'),
-  'لوتس':            _bowl('#C8813C', '<ellipse cx="32" cy="38" rx="10" ry="4" fill="#A8631C" stroke="none" opacity="0.7"/>'),
-  'فراولة':          _bowl('#D6404B', '<path d="M32 28 L35 33 L32 38 L29 33 Z" fill="#B02030" stroke="none"/>'),
-  'توت أزرق':        _bowl('#3B4E86', '<circle cx="28" cy="33" r="3" fill="#2A3B6E" stroke="none"/><circle cx="35" cy="37" r="3" fill="#2A3B6E" stroke="none"/>'),
-  'توت أحمر':        _bowl('#C0304F', '<circle cx="30" cy="32" r="3.5" fill="#A01040" stroke="none"/><circle cx="37" cy="37" r="2.5" fill="#A01040" stroke="none"/>'),
-  'بسكويت لوتس':     _bowl('#C48A48', '<rect x="25" y="30" width="7" height="4" rx="1" fill="#A86A28" stroke="none"/><rect x="33" y="34" width="7" height="4" rx="1" fill="#A86A28" stroke="none"/>'),
-  'بسكويت دايجستف': _bowl('#D9B77E', '<rect x="24" y="30" width="16" height="7" rx="2" fill="#C09A58" stroke="none" opacity="0.8"/>'),
-  'قهوة سوداء':      _bowl('#2E1B10', '<path d="M27 21 Q32 17 37 21" fill="none" stroke="#FBF4EA" stroke-width="1.5" stroke-linecap="round"/><path d="M29 17 Q32 14 35 17" fill="none" stroke="#FBF4EA" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>'),
-  'قهوة سعودية':     _bowl('#C9A063', '<path d="M30 27 L30 37" fill="none" stroke="#FBF4EA" stroke-width="2" stroke-linecap="round"/><path d="M26 31 L30 27 L34 31" fill="none" stroke="#FBF4EA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'),
-  'حلاوة جيلي':      _bowl('#FBF4EA', '<rect x="23" y="27" width="7" height="7" rx="2" fill="#D6404B" stroke="none"/><rect x="34" y="27" width="7" height="7" rx="2" fill="#4CAF50" stroke="none"/><rect x="23" y="36" width="7" height="7" rx="2" fill="#FFC107" stroke="none"/><rect x="34" y="36" width="7" height="7" rx="2" fill="#FF5722" stroke="none"/>'),
-  'مارشميلو':        _bowl('#F3C9CE', '<ellipse cx="28" cy="31" rx="6" ry="4" fill="#FFFFFF" stroke="none" opacity="0.9"/><ellipse cx="37" cy="37" rx="5" ry="3.5" fill="#FFFFFF" stroke="none" opacity="0.85"/>'),
-  'غزل البنات':      _bowl('#F3A8BE', '<ellipse cx="32" cy="32" rx="12" ry="9" fill="#F080A0" stroke="none" opacity="0.6"/><ellipse cx="30" cy="30" rx="7" ry="5" fill="#F3A8BE" stroke="none" opacity="0.7"/>'),
-  'عصير':            _bowl('#FFB84D', '<rect x="27" y="25" width="10" height="14" rx="3" fill="#FF8C00" stroke="none" opacity="0.85"/>'),
+/* ─── INGREDIENT PHOTOS ─────────────────────────────────── */
+const THUMB_PHOTOS = {
+  'نوتيلا':                 'https://up6.cc/2026/08/178752035441961.png',
+  'بستاشيو':                'https://up6.cc/2026/08/178752035443472.png',
+  'لوتس':                   'https://up6.cc/2026/08/178752035445213.png',
+  'فراولة':                 'https://up6.cc/2026/08/178752035445694.png',
+  'توت أزرق':               'https://up6.cc/2026/08/178752062868521.png',
+  'توت أحمر':               'https://up6.cc/2026/08/17875206287022.png',
+  'بسكويت لوتس':            'https://up6.cc/2026/08/178752062872623.png',
+  'بسكويت دايجستف':        'https://up6.cc/2026/08/178752062873124.png',
+  'قهوة سعودية':            'https://up6.cc/2026/08/178752091145341.png',
+  'قهوة سوداء':             'https://up6.cc/2026/08/178752091149142.png',
+  'حلاوة جيلي':             'https://up6.cc/2026/08/178752091150663.png',
+  'مارشميلو':               'https://up6.cc/2026/08/178752091152644.png',
+  'أكياس حلوى غزل البنات':  'https://up6.cc/2026/08/178752146226241.png',
+  'نوع عصير':               'https://up6.cc/2026/08/17875214622982.png',
 };
 const OFFER_INGREDIENTS = {
   weddings: [
@@ -99,7 +91,7 @@ const OFFER_INGREDIENTS = {
     { heading: 'المشروب',         keys: ['قهوة سوداء', 'قهوة سعودية'] },
   ],
   kids: [
-    { heading: 'الإضافات', keys: ['حلاوة جيلي', 'مارشميلو', 'غزل البنات', 'عصير'] },
+    { heading: 'الإضافات', keys: ['حلاوة جيلي', 'مارشميلو', 'أكياس حلوى غزل البنات', 'نوع عصير'] },
   ],
 };
 function buildIngThumbs(key) {
@@ -110,12 +102,13 @@ function buildIngThumbs(key) {
         (gi > 0 ? '<hr class="ing-divider"/>' : '')
         + '<p class="ing-group-heading">' + esc(g.heading) + '</p>'
         + '<div class="ing-row">'
-        + g.keys.map(k =>
-            '<div class="ing-thumb">'
-            + (THUMB_SVGS[k] || '')
-            + '<span class="ing-name">' + esc(k) + '</span>'
-            + '</div>'
-          ).join('')
+        + g.keys.map(k => {
+            const src = THUMB_PHOTOS[k] || '';
+            return '<div class="ing-thumb">'
+              + (src ? '<img src="' + src + '" alt="' + esc(k) + '" width="88" height="88" loading="lazy" decoding="async" referrerpolicy="no-referrer" />' : '')
+              + '<span class="ing-name">' + esc(k) + '</span>'
+              + '</div>';
+          }).join('')
         + '</div>'
       ).join('')
     + '</div>';
@@ -135,8 +128,8 @@ function waLink(text) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 
-const ICON_CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
-const ICON_SPARK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 5.3 5.3 1.7-5.3 2.2L12 17.5l-2.2-5.3L4.5 10l5.3-1.7z"/></svg>';
+const ICON_CHECK = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+const ICON_SPARK = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="9 12 11 14 15 10"/></svg>';
 
 /* ─── FOOTER YEAR ─────────────────────────────────────────── */
 function initFooterYear() {
@@ -356,12 +349,10 @@ let loadedGalleryImages = [];
 
 /* ─── GALLERY ─────────────────────────────────────────────── */
 const GALLERY_IMAGES = [
-  { src: 'https://b.top4top.io/p_3886dro0e1.jpeg', alt: 'من مناسبات Lammah bite 1' },
-  { src: 'https://c.top4top.io/p_3886pc12x2.jpeg', alt: 'من مناسبات Lammah bite 2' },
-  { src: 'https://d.top4top.io/p_3886b1lcc3.jpeg', alt: 'من مناسبات Lammah bite 3' },
-  { src: 'https://e.top4top.io/p_3886fusw64.jpeg', alt: 'من مناسبات Lammah bite 4' },
-  { src: 'https://f.top4top.io/p_3886vk7zh5.jpeg', alt: 'من مناسبات Lammah bite 5' },
-  { src: 'https://g.top4top.io/p_3886y69ca6.jpeg', alt: 'من مناسبات Lammah bite 6' },
+  { src: 'https://up6.cc/2026/08/178752155160161.jpeg', alt: 'من مناسبات Lammah bite 1' },
+  { src: 'https://up6.cc/2026/08/178752155167392.jpeg', alt: 'من مناسبات Lammah bite 2' },
+  { src: 'https://up6.cc/2026/08/178752155171823.jpeg', alt: 'من مناسبات Lammah bite 3' },
+  { src: 'https://up6.cc/2026/08/178752155178544.jpeg', alt: 'من مناسبات Lammah bite 4' },
 ];
 
 function initGallery() {
