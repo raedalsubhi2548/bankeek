@@ -144,6 +144,7 @@ p:last-child { margin-bottom: 0; }
 .brand-logo {
   height: 62px; width: auto;
   object-fit: contain; display: block;
+  background: transparent; mix-blend-mode: multiply;
 }
 @media (min-width: 769px) { .brand-logo { height: 74px; } }
 
@@ -259,6 +260,7 @@ p:last-child { margin-bottom: 0; }
 .hero-logo {
   width: auto; height: clamp(150px, 32vw, 230px);
   object-fit: contain; margin: 0 auto var(--sp-6);
+  background: transparent; mix-blend-mode: multiply;
 }
 .hero-title {
   font-size: var(--fs-display); font-weight: 800;
@@ -540,6 +542,20 @@ p:last-child { margin-bottom: 0; }
   color: var(--text); transition: border-color .2s, box-shadow .2s;
 }
 .form-group textarea { min-height: 110px; resize: vertical; }
+
+/* iOS Safari: prevent stretched calendar icon on date/time inputs */
+input[type="date"], input[type="time"] {
+  -webkit-appearance: none; appearance: none;
+  min-height: 52px; height: 52px; line-height: normal;
+  padding: 0 14px; text-align: right; direction: rtl; background: var(--white);
+}
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  width: 22px; height: 22px; padding: 0; margin: 0; opacity: .65; cursor: pointer;
+}
+input[type="date"]::-webkit-date-and-time-value { text-align: right; }
+input[type="date"]::-webkit-datetime-edit { padding: 0; }
+
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
   outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,160,99,0.16);
 }
@@ -603,8 +619,7 @@ p:last-child { margin-bottom: 0; }
 /* Clean white logo on the brown footer */
 .footer-logo-img {
   height: 70px; width: auto; object-fit: contain; display: block;
-  filter: brightness(0) invert(1);
-  mix-blend-mode: screen;
+  background: transparent;
 }
 .footer-brand-name    { font-size: 20px; font-weight: 800; color: var(--white); }
 .footer-tagline-text  { color: var(--gold-light); font-size: 16px; font-weight: 700; }
@@ -671,3 +686,21 @@ p:last-child { margin-bottom: 0; }
   .reveal { transition: none; opacity: 1; transform: none; }
   * { animation: none !important; }
 }
+
+/* ─── INGREDIENT THUMBNAILS (modal) ───────────────────── */
+.ing-section { margin: 0 0 var(--sp-3); }
+.ing-group-heading {
+  font-size: 12px; font-weight: 700; color: var(--muted);
+  letter-spacing: .05em; text-transform: uppercase; margin: 0 0 10px;
+}
+.ing-row {
+  display: flex; flex-wrap: wrap; gap: 10px 8px;
+  justify-content: flex-start; margin-bottom: 4px;
+}
+.ing-thumb {
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  width: 70px; text-align: center;
+}
+.ing-thumb svg { display: block; flex-shrink: 0; overflow: visible; }
+.ing-name { font-size: 12px; color: var(--brown-mid); line-height: 1.35; word-break: break-word; max-width: 68px; }
+hr.ing-divider { border: none; border-top: 1px dashed var(--gold-light); margin: 12px 0; }

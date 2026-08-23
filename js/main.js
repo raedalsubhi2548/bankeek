@@ -4,7 +4,7 @@
 'use strict';
 
 /* ── EDIT ME ── */
-const WHATSAPP_NUMBER = "9665XXXXXXXX";
+const WHATSAPP_NUMBER = "966593822656";
 
 /* ─── OFFERS — SINGLE SOURCE OF TRUTH ─────────────────────── */
 const OFFERS = {
@@ -59,6 +59,67 @@ const OFFERS = {
 };
 
 const OFFER_ORDER = ['weddings', 'gatherings', 'kids'];
+
+/* ─── INGREDIENT THUMBNAILS ───────────────────────────────── */
+function _bowl(fill, extra) {
+  return '<svg viewBox="0 0 64 64" width="64" height="64" xmlns="http://www.w3.org/2000/svg">'
+    + '<circle cx="32" cy="34" r="24" fill="#F5E9DA" stroke="#C9A063" stroke-width="2.5" stroke-linecap="round"/>'
+    + '<circle cx="32" cy="34" r="17" fill="' + fill + '" stroke="none"/>'
+    + (extra || '')
+    + '<circle cx="24" cy="26" r="4" fill="#FFFFFF" opacity="0.22" stroke="none"/>'
+    + '</svg>';
+}
+const THUMB_SVGS = {
+  'نوتيلا':          _bowl('#4A2C17', '<ellipse cx="32" cy="35" rx="10" ry="5" fill="#6B3E22" stroke="none"/>'),
+  'بستاشيو':         _bowl('#A8B968', '<circle cx="29" cy="33" r="3.5" fill="#8FA04E" stroke="none"/><circle cx="36" cy="36" r="3" fill="#8FA04E" stroke="none"/>'),
+  'لوتس':            _bowl('#C8813C', '<ellipse cx="32" cy="38" rx="10" ry="4" fill="#A8631C" stroke="none" opacity="0.7"/>'),
+  'فراولة':          _bowl('#D6404B', '<path d="M32 28 L35 33 L32 38 L29 33 Z" fill="#B02030" stroke="none"/>'),
+  'توت أزرق':        _bowl('#3B4E86', '<circle cx="28" cy="33" r="3" fill="#2A3B6E" stroke="none"/><circle cx="35" cy="37" r="3" fill="#2A3B6E" stroke="none"/>'),
+  'توت أحمر':        _bowl('#C0304F', '<circle cx="30" cy="32" r="3.5" fill="#A01040" stroke="none"/><circle cx="37" cy="37" r="2.5" fill="#A01040" stroke="none"/>'),
+  'بسكويت لوتس':     _bowl('#C48A48', '<rect x="25" y="30" width="7" height="4" rx="1" fill="#A86A28" stroke="none"/><rect x="33" y="34" width="7" height="4" rx="1" fill="#A86A28" stroke="none"/>'),
+  'بسكويت دايجستف': _bowl('#D9B77E', '<rect x="24" y="30" width="16" height="7" rx="2" fill="#C09A58" stroke="none" opacity="0.8"/>'),
+  'قهوة سوداء':      _bowl('#2E1B10', '<path d="M27 21 Q32 17 37 21" fill="none" stroke="#FBF4EA" stroke-width="1.5" stroke-linecap="round"/><path d="M29 17 Q32 14 35 17" fill="none" stroke="#FBF4EA" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>'),
+  'قهوة سعودية':     _bowl('#C9A063', '<path d="M30 27 L30 37" fill="none" stroke="#FBF4EA" stroke-width="2" stroke-linecap="round"/><path d="M26 31 L30 27 L34 31" fill="none" stroke="#FBF4EA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'),
+  'حلاوة جيلي':      _bowl('#FBF4EA', '<rect x="23" y="27" width="7" height="7" rx="2" fill="#D6404B" stroke="none"/><rect x="34" y="27" width="7" height="7" rx="2" fill="#4CAF50" stroke="none"/><rect x="23" y="36" width="7" height="7" rx="2" fill="#FFC107" stroke="none"/><rect x="34" y="36" width="7" height="7" rx="2" fill="#FF5722" stroke="none"/>'),
+  'مارشميلو':        _bowl('#F3C9CE', '<ellipse cx="28" cy="31" rx="6" ry="4" fill="#FFFFFF" stroke="none" opacity="0.9"/><ellipse cx="37" cy="37" rx="5" ry="3.5" fill="#FFFFFF" stroke="none" opacity="0.85"/>'),
+  'غزل البنات':      _bowl('#F3A8BE', '<ellipse cx="32" cy="32" rx="12" ry="9" fill="#F080A0" stroke="none" opacity="0.6"/><ellipse cx="30" cy="30" rx="7" ry="5" fill="#F3A8BE" stroke="none" opacity="0.7"/>'),
+  'عصير':            _bowl('#FFB84D', '<rect x="27" y="25" width="10" height="14" rx="3" fill="#FF8C00" stroke="none" opacity="0.85"/>'),
+};
+const OFFER_INGREDIENTS = {
+  weddings: [
+    { heading: 'الصوصات',         keys: ['نوتيلا', 'بستاشيو', 'لوتس'] },
+    { heading: 'الفواكه الطازجة', keys: ['فراولة', 'توت أزرق', 'توت أحمر'] },
+    { heading: 'البسكويت',        keys: ['بسكويت لوتس', 'بسكويت دايجستف'] },
+    { heading: 'المشروب',         keys: ['قهوة سوداء', 'قهوة سعودية'] },
+  ],
+  gatherings: [
+    { heading: 'الصوصات',         keys: ['نوتيلا', 'بستاشيو', 'لوتس'] },
+    { heading: 'الفواكه الطازجة', keys: ['فراولة', 'توت أزرق', 'توت أحمر'] },
+    { heading: 'البسكويت',        keys: ['بسكويت لوتس', 'بسكويت دايجستف'] },
+    { heading: 'المشروب',         keys: ['قهوة سوداء', 'قهوة سعودية'] },
+  ],
+  kids: [
+    { heading: 'الإضافات', keys: ['حلاوة جيلي', 'مارشميلو', 'غزل البنات', 'عصير'] },
+  ],
+};
+function buildIngThumbs(key) {
+  const groups = OFFER_INGREDIENTS[key];
+  if (!groups || !groups.length) return '';
+  return '<div class="ing-section">'
+    + groups.map((g, gi) =>
+        (gi > 0 ? '<hr class="ing-divider"/>' : '')
+        + '<p class="ing-group-heading">' + esc(g.heading) + '</p>'
+        + '<div class="ing-row">'
+        + g.keys.map(k =>
+            '<div class="ing-thumb">'
+            + (THUMB_SVGS[k] || '')
+            + '<span class="ing-name">' + esc(k) + '</span>'
+            + '</div>'
+          ).join('')
+        + '</div>'
+      ).join('')
+    + '</div>';
+}
 
 /* ─── UTILS ───────────────────────────────────────────────── */
 const qs  = (sel, scope = document) => scope.querySelector(sel);
@@ -196,12 +257,14 @@ function initOfferModal() {
     const oldPrice = o.priceOld ? `<span class="price-old">${o.priceOld}</span>` : '';
     const rows  = o.items.map(i => `<li>${ICON_SPARK}<span>${esc(i)}</span></li>`).join('');
     const chips = o.inclusions.map(i => `<span class="incl-tag">${ICON_CHECK}${esc(i)}</span>`).join('');
+    const thumbs = buildIngThumbs(key);
 
     body.innerHTML = `
       <span class="modal-offer-pill" id="offer-modal-title">${esc(o.title)}</span>
       <h2 class="modal-capacity">${esc(o.capacity)}</h2>
       ${o.sub ? `<p class="modal-sub">${esc(o.sub)}</p>` : ''}
       <div class="gold-divider"></div>
+      ${thumbs ? thumbs + '<div class="gold-divider"></div>' : ''}
       <h3 class="modal-intro">${esc(o.intro)}</h3>
       <ul class="modal-list">${rows}</ul>
       <div class="gold-divider"></div>
@@ -289,6 +352,8 @@ function initOfferModal() {
   });
 }
 
+let loadedGalleryImages = [];
+
 /* ─── GALLERY ─────────────────────────────────────────────── */
 const GALLERY_IMAGES = [
   { src: 'https://b.top4top.io/p_3886dro0e1.jpeg', alt: 'من مناسبات Lammah bite 1' },
@@ -300,12 +365,41 @@ const GALLERY_IMAGES = [
 ];
 
 function initGallery() {
+  loadedGalleryImages = [];
   qsa('[data-gallery-grid]').forEach(grid => {
     const limit = parseInt(grid.dataset.limit, 10) || GALLERY_IMAGES.length;
-    grid.innerHTML = GALLERY_IMAGES.slice(0, limit).map((img, idx) => `
-      <button type="button" class="gallery-item reveal" data-idx="${idx}" aria-label="${esc(img.alt)}">
-        <img src="${img.src}" alt="${esc(img.alt)}" loading="lazy" referrerpolicy="no-referrer" />
-      </button>`).join('');
+    GALLERY_IMAGES.slice(0, limit).forEach(imgData => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'gallery-item reveal';
+      btn.setAttribute('aria-label', imgData.alt);
+
+      const img = document.createElement('img');
+      img.alt = imgData.alt;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.setAttribute('referrerpolicy', 'no-referrer');
+      img.width = 400;
+      img.height = 300;
+
+      img.onerror = function() {
+        if (!this.dataset.retried) {
+          this.dataset.retried = '1';
+          this.src = imgData.src + '?v=1';
+        } else {
+          btn.style.display = 'none';
+        }
+      };
+      img.onload = function() {
+        if (!loadedGalleryImages.some(x => x.src === imgData.src)) {
+          loadedGalleryImages.push(imgData);
+        }
+      };
+
+      img.src = imgData.src;
+      btn.appendChild(img);
+      grid.appendChild(btn);
+    });
   });
 }
 
@@ -320,18 +414,24 @@ function initLightbox() {
   let currentIdx  = 0;
   let savedScroll = 0;
 
+  const getList = () => loadedGalleryImages.length ? loadedGalleryImages : GALLERY_IMAGES;
+
   function show(idx) {
-    const total = GALLERY_IMAGES.length;
-    currentIdx = ((idx % total) + total) % total;
-    lbImg.src = GALLERY_IMAGES[currentIdx].src;
-    lbImg.alt = GALLERY_IMAGES[currentIdx].alt;
+    const list = getList();
+    if (!list.length) return;
+    currentIdx = ((idx % list.length) + list.length) % list.length;
+    lbImg.src = list[currentIdx].src;
+    lbImg.alt = list[currentIdx].alt;
+    lbImg.setAttribute('referrerpolicy', 'no-referrer');
   }
-  function open(idx) {
-    show(idx);
+  function openLb(src) {
+    const list = getList();
+    const idx = list.findIndex(img => img.src === src || img.src + '?v=1' === src);
     savedScroll = window.scrollY || 0;
     document.body.style.top = `-${savedScroll}px`;
     document.body.classList.add('modal-open');
     lb.classList.add('open');
+    show(idx >= 0 ? idx : 0);
   }
   function close() {
     lb.classList.remove('open');
@@ -342,7 +442,9 @@ function initLightbox() {
 
   document.addEventListener('click', e => {
     const item = e.target.closest('.gallery-item');
-    if (item) open(parseInt(item.dataset.idx, 10) || 0);
+    if (!item) return;
+    const imgEl = item.querySelector('img');
+    if (imgEl && imgEl.src) openLb(imgEl.src);
   });
   lbClose.addEventListener('click', close);
   lb.addEventListener('click', e => { if (e.target === lb) close(); });
