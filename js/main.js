@@ -4,7 +4,7 @@
 'use strict';
 
 /* ── EDIT ME ── */
-const WHATSAPP_NUMBER = "966593822656";
+const WHATSAPP_NUMBER = "966593822625";
 
 /* ─── OFFERS — SINGLE SOURCE OF TRUTH ─────────────────────── */
 const OFFERS = {
